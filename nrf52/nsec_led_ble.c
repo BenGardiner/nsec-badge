@@ -67,7 +67,7 @@ bool is_ble_controled = false;
 uint8_t selected_segment = 0;
 SegmentBle segment_array[NEOPIXEL_COUNT];
 uint8_t brightness = 60;
-bool unlock_state = false;
+bool unlock_state = true;
 
 void nsec_led_ble_init(void) {
 
