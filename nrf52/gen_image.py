@@ -27,8 +27,8 @@ def encode_image(input_file_path, output_file_path, rotate=False):
         f.write(C_TEMPLATE.format(
             byte_array=array,
             var_name=os.path.splitext(os.path.basename(output_file_path))[0],
-            width=image.width,
-            height=image.height
+            width=image.size[0],
+            height=image.size[1]
         ))
 
 def decode_image(input_file_path, output_file_path, width, rotate=False):
