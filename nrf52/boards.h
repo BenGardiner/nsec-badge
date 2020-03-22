@@ -42,6 +42,6 @@
 #define nRF_CTS            14
 #define nRF_RTS            15
 
-#define NEOPIXEL         26
+#define NEOPIXEL         27
 
 #endif
