@@ -136,20 +136,11 @@ void open_battery_status(uint8_t item) {
 static
 menu_item_s main_menu_items[] = {
     {
-        .label = "Conference schedule",
-        .handler = open_conference_schedule,
-    }, {
         .label = "LED pattern",
         .handler = open_led_pattern,
     }, {
         .label = "Settings",
         .handler = open_settings,
-    }, {
-        .label = "Battery status",
-        .handler = open_battery_status,
-    }, {
-        .label = "Battery Warning",
-        .handler = open_warning,
     }
 };
 
