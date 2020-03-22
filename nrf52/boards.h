@@ -20,7 +20,7 @@
 
 // Battery
 #define BATT_VOLTAGE    2
-#define BATT_CHARGE        27
+//#define BATT_CHARGE        27
 #define BATT_PGOOD        28
 
 // Display

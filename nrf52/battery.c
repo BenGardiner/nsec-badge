@@ -83,7 +83,8 @@ bool battery_is_charging() {
     /*
      * RT9525GQW pin CHG, active low.
      */
-    return (nrf_gpio_pin_read(BATT_CHARGE) == 0);
+    //return (nrf_gpio_pin_read(BATT_CHARGE) == 0);
+    return 1;
 }
 
 bool battery_is_usb_plugged() {
@@ -159,7 +160,7 @@ void saadc_callback(nrf_drv_saadc_evt_t const *p_event) {
 void battery_init() {
     ret_code_t err_code;
 
-    nrf_gpio_cfg_input(BATT_CHARGE, NRF_GPIO_PIN_PULLUP);
+    //nrf_gpio_cfg_input(BATT_CHARGE, NRF_GPIO_PIN_PULLUP);
     nrf_gpio_cfg_input(BATT_PGOOD, NRF_GPIO_PIN_PULLUP);
 
     /*
