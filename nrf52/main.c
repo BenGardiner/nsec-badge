@@ -136,6 +136,9 @@ void open_battery_status(uint8_t item) {
 static
 menu_item_s main_menu_items[] = {
     {
+        .label = "0x533b370",
+        .handler = open_led_pattern,
+    }, {
         .label = "LED pattern",
         .handler = open_led_pattern,
     }, {
