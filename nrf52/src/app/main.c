@@ -133,8 +133,6 @@ static void init_ble() {
 static void main_service_device() {
     cli_process();
     nsec_controls_process();
-    battery_status_process();
-    mode_zombie_process();
     service_WS2812FX();
 
     /* Wait until next event */

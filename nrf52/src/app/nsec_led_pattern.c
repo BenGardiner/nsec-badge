@@ -207,10 +207,8 @@ bool pattern_is_unlock(uint32_t sponsor_index)
 // true valid, false invalid
 bool nsec_unlock_led_pattern(char *password, uint8_t index)
 {
-    if (strcmp(password, MASTER_PW) == 0) {
-        unlock_all_pattern();
-        return true;
-    }
+    unlock_all_pattern();
+    return true;
     if (strcmp(password, sponsor_password[index]) == 0) {
         if (!pattern_is_unlock(index)) {
             unlock_pattern(index);

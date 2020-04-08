@@ -115,8 +115,7 @@ void set_default_persistency(void)
     persistency->revision = PERSISTENCY_REVISION;
     persistency->screensaver = 2;
 
-    snprintf(persistency->identity_name, 16, "Citizen #%02ld",
-                 (NRF_FICR->DEVICEID[0] & 0xFFFF));
+    snprintf(persistency->identity_name, 16, "0xstatic");
 
     set_default_led_settings();
 
