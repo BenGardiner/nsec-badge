@@ -1,19 +1,19 @@
-.PHONY: all nrf stm default clean
+.PHONY: all nrf stm default clean FORCE
 
 default: all
 
 builds:
 	mkdir builds
 
-builds/nsec19_stm32_%: builds
+builds/nsec19_stm32_%: FORCE | builds
 	$(MAKE) -C stm32 $@
 	cp stm32/$@ $@
 
-builds/nsec19_nrf52_%.elf: builds
+builds/nsec19_nrf52_%.elf: FORCE | builds
 	$(MAKE) -C nrf52 FLAVOR=$*
 	cp nrf52/$(@:%.elf=%.out) $@
 
-builds/s132_nrf52_5.0.0_softdevice.hex:
+builds/s132_nrf52_5.0.0_softdevice.hex: FORCE | builds
 	$(MAKE) -C nrf52 nordicsdk
 	cp nrf52/nordicsdk/softdevice/s132/hex/s132_nrf52_5.0.0_softdevice.hex $@
 
