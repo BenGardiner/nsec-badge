@@ -333,9 +333,9 @@ static void led_settings_storage_init(void) {
     rc = nrf_fstorage_init(&fs_led_settings, p_fs_api, NULL);
     APP_ERROR_CHECK(rc);
 
-    default_settings.mode = FX_MODE_CHASE_BLACKOUT_RAINBOW;
+    default_settings.mode = FX_MODE_COLOR_WIPE_REV;
     default_settings.speed = SUPER_SLOW_SPEED;
-    default_settings.brightness = MEDIUM_BRIGHTNESS;
+    default_settings.brightness = MAX_BRIGHTNESS;
     default_settings.colors[0] = BLUE;
     default_settings.colors[1] = RED;
     default_settings.colors[2] = GREEN;

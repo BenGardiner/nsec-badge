@@ -29,7 +29,7 @@
 #define HIGH_BRIGHTNESS             80
 #define MAX_BRIGHTNESS              100
 
-#define SUPER_SLOW_SPEED            5000
+#define SUPER_SLOW_SPEED            30000
 #define SLOW_SPEED                  1000
 #define MEDIUM_SPEED                500
 #define FAST_SPEED                  100
