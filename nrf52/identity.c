@@ -64,29 +64,40 @@ APP_TIMER_DEF(nsec_render_timer);
 #define NSEC_ROTATING_MESH nsec_cube
 #endif
 
+int count=0;
 static void nsec_render_3d_mesh(void * context) {
+    static float current_angle = 0.0f;
     if(is_at_main_menu) {
-        static float current_angle = 0.0f;
         gfx_fillRect(0, 10, 40, 42, SSD1306_BLACK);
         nsec_draw_rotated_mesh(NSEC_ROTATING_MESH, (int[2]) {20, 32}, 11,
                                (float[3]) {current_angle,
                                            current_angle + 1.0f,
                                            current_angle + 2.0f});
-        current_angle += 0.03f;
+        current_angle += 0.16f;
+	sprintf(identity.name, "BODGE THE");
+	if(current_angle >= M_PI)
+	    sprintf(identity.name, "PLANET");
         if(current_angle >= 2 * M_PI) {
             current_angle -= 2 * M_PI;
         }
+    gfx_fillRect(48, 12, 128-48, 20, SSD1306_BLACK);
+    gfx_setCursor(48, 30);
+    char name_with_spaces[NAME_MAX_LEN + 1];
+    snprintf(name_with_spaces, NAME_MAX_LEN + 1, "%-14s", identity.name);
+    gfx_puts(name_with_spaces);
         gfx_update();
     }
+
+
 }
 
 void init_identity_service() {
-    memset(identity.name, 0, sizeof(identity.name));
+    //memset(identity.name, 0, sizeof(identity.name));
 
     app_timer_create(&nsec_render_timer, APP_TIMER_MODE_REPEATED, nsec_render_3d_mesh);
     app_timer_start(nsec_render_timer, APP_TIMER_TICKS(40), NULL);
 
-    load_stored_identity(identity.name);
+    //load_stored_identity(identity.name);
     //memcpy(identity.avatar, default_avatar_bitmap, sizeof(identity.avatar));
     identity.unlocked = 0;
     configure_service();
@@ -127,9 +138,9 @@ void nsec_identity_get_unlock_key(char * data, size_t length) {
 
 static uint16_t on_name_write(CharacteristicWriteEvent* event){
 	if(identity.unlocked) {
-		memset(identity.name, 0, NAME_MAX_LEN);
-		strncpy(identity.name, (char *) event->data_buffer, MIN(event->data_length, NAME_MAX_LEN));
-		update_identity(identity.name); 
+		//memset(identity.name, 0, NAME_MAX_LEN);
+		//strncpy(identity.name, (char *) event->data_buffer, MIN(event->data_length, NAME_MAX_LEN));
+		//update_identity(identity.name); 
 		return BLE_GATT_STATUS_SUCCESS;
 	}
 	else{
@@ -141,7 +152,7 @@ static uint16_t on_avatar_write(CharacteristicWriteEvent* event){
 	if(identity.unlocked && event->data_length == AVATAR_SIZE) {
 		memcpy(identity.avatar, event->data_buffer, AVATAR_SIZE);
 		if(is_at_main_menu) {
-				nsec_identity_draw();
+//				nsec_identity_draw();
 				gfx_update();
 		}
 		return BLE_GATT_STATUS_SUCCESS;
