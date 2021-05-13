@@ -1,3 +1,4 @@
+#set trace-commands on
 source flash_config.gdb
 
 set gnutarget elf32-littlearm
