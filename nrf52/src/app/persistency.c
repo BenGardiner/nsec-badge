@@ -86,15 +86,15 @@ void update_persistency(void)
 
 static void set_default_led_settings(void)
 {
-    persistency->led_settings.brightness = LOW_BRIGHTNESS;
+    persistency->led_settings.brightness = MAX_BRIGHTNESS;
     persistency->led_settings.control = true;
     persistency->led_settings.num_segment = 1;
 
     for (int i = 0 ; i < NEOPIXEL_COUNT; i++) {
         persistency->led_settings.segment[i].start = 0;
         persistency->led_settings.segment[i].stop = NEOPIXEL_COUNT - 1;
-        persistency->led_settings.segment[i].mode = FX_MODE_SINGLE_DYNAMIC;
-        persistency->led_settings.segment[i].speed = MEDIUM_SPEED;
+        persistency->led_settings.segment[i].mode = FX_MODE_COLOR_WIPE;
+        persistency->led_settings.segment[i].speed = SUPER_SLOW_SPEED;
         persistency->led_settings.segment[i].colors[0] = BLUE;
         persistency->led_settings.segment[i].colors[1] = RED;
         persistency->led_settings.segment[i].colors[2] = GREEN;
@@ -368,7 +368,7 @@ void load_persistency(void) {
         set_default_persistency();
     }
 
-    if (persistency->revision != PERSISTENCY_REVISION) {
+    if (persistency->revision != PERSISTENCY_REVISION && false) {
         set_default_persistency();
     }
 
